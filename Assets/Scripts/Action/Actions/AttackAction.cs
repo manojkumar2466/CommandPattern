@@ -11,7 +11,7 @@ namespace Command.Actions
         private UnitController targetUnit;
         public TargetType TargetType => TargetType.Enemy;
 
-        public void PerformAction(UnitController actorUnit, UnitController targetUnit, bool isSuccessful)
+        public void PerformAction(UnitController actorUnit, UnitController targetUnit, bool isSuccessfull)
         {
             this.actorUnit = actorUnit;
             this.targetUnit = targetUnit;

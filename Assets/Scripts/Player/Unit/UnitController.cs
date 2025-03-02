@@ -34,6 +34,10 @@ namespace Command.Player
             InitializeVariables();
         }
 
+        public void ProcessUnitCommand(IUnitCommand unitcommand)
+        {
+            GameService.Instance.commandInvoker.ProcessCommand(unitcommand);
+        }
         private void InitializeView(Vector3 positionToSet)
         {
             unitView = Object.Instantiate(unitScriptableObject.UnitPrefab);

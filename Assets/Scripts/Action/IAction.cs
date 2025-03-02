@@ -11,7 +11,7 @@ namespace Command.Actions
     {
         public TargetType TargetType { get; }
 
-        public void PerformAction(UnitController actorUnit, UnitController targetUnit, bool );
+        public void PerformAction(UnitController actorUnit, UnitController targetUnit, bool isSuccessfull);
 
         public bool IsSuccessful();
 

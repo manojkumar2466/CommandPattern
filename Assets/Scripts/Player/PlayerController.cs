@@ -19,6 +19,10 @@ namespace Command.Player
             CreateUnits(playerScriptableObject.UnitData, playerScriptableObject.UnitPositions);
         }
 
+        public void ProcessUnitCommand(IUnitCommand unitCommand)
+        {
+            GetUnitByID(unitCommand.commnadData.ActorUnitID).ProcessUnitCommand(unitCommand);
+        }
         private void CreateUnits(List<UnitScriptableObject> unitScriptableObjects, List<Vector3> unitPositions)
         {
             units = new List<UnitController>();

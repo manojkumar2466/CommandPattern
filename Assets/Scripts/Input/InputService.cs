@@ -31,7 +31,7 @@ namespace Command.Input
 
         public void OnActionSelected(CommandType selectedActionType)
         {
-            this.selectedActionType = selectedActionType;
+            this.selectedCommandType = selectedActionType;
             SetInputState(InputState.SELECTING_TARGET);
             TargetType targetType = SetTargetType(selectedActionType);
             ShowTargetSelectionUI(targetType);
@@ -50,7 +50,8 @@ namespace Command.Input
             SetInputState(InputState.EXECUTING_INPUT);
             IUnitCommand unitCommand= CreateUnitCommand(targetUnit);
 
-           //GameService.Instance.
+            GameService.Instance.ProcessUnitCommand(unitCommand);
+           
         }
 
         private CommandData CreateCommandData(UnitController targetUnit)

@@ -11,4 +11,9 @@ public class CommandInvoker : MonoBehaviour
 
     public void RegisterCommand(ICommand command)=> commandRegistry.Push(command);
 
+    public void ProcessCommand(ICommand commandToProcess)
+    {
+        ExecuteCommand(commandToProcess);
+        RegisterCommand(commandToProcess);
+    }
 }
