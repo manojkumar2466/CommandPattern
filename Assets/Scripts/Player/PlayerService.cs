@@ -65,7 +65,7 @@ namespace Command.Player
 
         public void OnPlayerTurnCompleted() => StartNextTurn();
 
-        public void PerformAction(ActionType actionSelected, UnitController targetUnit) => GameService.Instance.ActionService.GetActionByType(actionSelected).PerformAction(activePlayer.GetUnitByID(ActiveUnitID), targetUnit);
+        public void PerformAction(CommandType actionSelected, UnitController targetUnit, bool isSuccessful) => GameService.Instance.ActionService.GetActionByType(actionSelected).PerformAction(activePlayer.GetUnitByID(ActiveUnitID), targetUnit, isSuccessful);
 
         public void PlayerDied(PlayerController deadPlayer)
         {
@@ -95,6 +95,20 @@ namespace Command.Player
                 PlayerDied(player1);
             else if (player2.AllUnitsDead())
                 PlayerDied(player2);
+        }
+
+        public void ProcessUnitCommand(IUnitCommand unitCommand)
+        {
+            SetUnitReferences(unitCommand);
+            GetPlayerById(unitCommand.commandData.ActorPlayerID).ProcessUnitCommand(unitCommand);
+        }
+
+        private void SetUnitReferences(IUnitCommand unitCommand)
+        {
+            UnitController actorUnit = GetPlayerById(unitCommand.commandData.ActorPlayerID).GetUnitByID(unitCommand.commandData.ActorUnitID);
+            UnitController targetUnit = GetPlayerById(unitCommand.commandData.TargetPlayerID).GetUnitByID(unitCommand.commandData.TargetUnitID);
+            unitCommand.SetActorUnit(actorUnit);
+            unitCommand.SerTargetUnit(targetUnit);
         }
     }
 }
