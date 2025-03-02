@@ -9,7 +9,7 @@ namespace Command.Input
         private MouseInputHandler mouseInputHandler;
 
         private InputState currentState;
-        private CommandType selectedActionType;
+        private CommandType selectedCommandType;
         private TargetType targetType;
 
         public InputService()
@@ -48,7 +48,55 @@ namespace Command.Input
         public void OnTargetSelected(UnitController targetUnit)
         {
             SetInputState(InputState.EXECUTING_INPUT);
-            GameService.Instance.PlayerService.PerformAction(selectedActionType, targetUnit);
+            IUnitCommand unitCommand= CreateUnitCommand(targetUnit);
+
+           //GameService.Instance.
         }
+
+        private CommandData CreateCommandData(UnitController targetUnit)
+        {
+            CommandData commandData = new CommandData(GameService.Instance.PlayerService.ActiveUnitID,
+                                                        targetUnit.UnitID,
+                                                        GameService.Instance.PlayerService.ActivePlayerID,
+                                                        targetUnit.Owner.PlayerID);
+            return commandData;
+        }
+
+        private IUnitCommand CreateUnitCommand(UnitController targetUnit)
+        {
+            CommandData commandData = CreateCommandData(targetUnit);
+
+            IUnitCommand unitCommand;
+            switch (selectedCommandType)
+            {
+                case CommandType.Attack:
+                    unitCommand = new AttackCommand(commandData);
+                    break;
+                case CommandType.AttackStance:
+                    unitCommand = new AttackStanceCommand(commandData);
+                    break;
+                case CommandType.BerserkAttack:
+                    unitCommand = new BeserkAttackCommand(commandData);
+                    break;
+                case CommandType.Cleanse:
+                    unitCommand = new CleanseCommand(commandData);
+                    break;
+                case CommandType.Heal:
+                    unitCommand = new HealCommand(commandData);
+                    break;
+                case CommandType.Meditate:
+                    unitCommand = new MeditateCommand(commandData);
+                    break;
+                case CommandType.ThirdEye:
+                    unitCommand = new ThirdEyeCommand(commandData);
+                    break;
+                default:
+                    throw new System.Exception("unit command not found");
+
+            }
+            return unitCommand;
+
+        }
+
     }
 }
