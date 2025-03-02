@@ -21,7 +21,7 @@ namespace Command.Player
 
         public void ProcessUnitCommand(IUnitCommand unitCommand)
         {
-            GetUnitByID(unitCommand.commnadData.ActorUnitID).ProcessUnitCommand(unitCommand);
+            GetUnitByID(unitCommand.commandData.ActorUnitID).ProcessUnitCommand(unitCommand);
         }
         private void CreateUnits(List<UnitScriptableObject> unitScriptableObjects, List<Vector3> unitPositions)
         {

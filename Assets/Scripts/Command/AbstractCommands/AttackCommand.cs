@@ -4,7 +4,6 @@ using UnityEngine;
 using Command.Main;
 public class AttackCommand : IUnitCommand
 {
-    private CommandData commandData;
     private bool willHitTarget;
     public AttackCommand(CommandData commandData)
     {

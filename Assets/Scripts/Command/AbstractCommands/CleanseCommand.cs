@@ -6,7 +6,6 @@ using Command.Main;
 public class CleanseCommand : IUnitCommand
 {
     private bool willHitTarget;
-    private CommandData commandData;
 
     public CleanseCommand(CommandData commandData)
     {

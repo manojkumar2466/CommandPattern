@@ -6,11 +6,10 @@ using Command.Main;
 public class AttackStanceCommand : IUnitCommand
 {
     private bool willHitTarget;
-    private CommandData commandData;
 
     public AttackStanceCommand(CommandData commandData)
     {
-        this.commandData = commnadData;
+       this.commandData = commandData;
         willHitTarget = WillHitTarget();
     }
 

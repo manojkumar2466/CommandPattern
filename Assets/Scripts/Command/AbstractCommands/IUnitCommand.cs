@@ -22,7 +22,7 @@ public abstract class IUnitCommand: ICommand
     public int TargetUnitID;
     public int ActorPlayerID;
     public int TargetPlayerID;
-    public CommandData commnadData;
+    public CommandData commandData;
 
     protected UnitController actorunit;
     protected UnitController targetunit;

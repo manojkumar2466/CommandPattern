@@ -6,11 +6,10 @@ using Command.Main;
 public class BeserkAttackCommand : IUnitCommand
 {
     private bool willHitTarget;
-    private CommandData commandData;
 
     public BeserkAttackCommand(CommandData commandData)
     {
-        this.commandData = commnadData;
+        this.commandData = commandData;
         willHitTarget = WillHitTarget();
     }
 

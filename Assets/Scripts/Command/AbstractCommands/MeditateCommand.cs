@@ -5,7 +5,6 @@ using Command.Main;
 
 public class MeditateCommand : IUnitCommand
 {
-    private CommandData commandData;
     private bool willHitTarget;
     public MeditateCommand(CommandData commandData)
     {

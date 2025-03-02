@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CommandInvoker : MonoBehaviour
 {
-    private Stack<ICommand> commandRegistry;
+    private Stack<ICommand> commandRegistry = new Stack<ICommand>();
 
     public void ExecuteCommand(ICommand command)=> command.Execute();
 

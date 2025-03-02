@@ -5,7 +5,6 @@ using Command.Main;
 public class HealCommand : IUnitCommand
 {
     private bool willHitTaget;
-    private CommandData commandData;
 
     public HealCommand(CommandData commandData)
     {

@@ -100,13 +100,13 @@ namespace Command.Player
         public void ProcessUnitCommand(IUnitCommand unitCommand)
         {
             SetUnitReferences(unitCommand);
-            GetPlayerById(unitCommand.commnadData.ActorPlayerID).ProcessUnitCommand(unitCommand);
+            GetPlayerById(unitCommand.commandData.ActorPlayerID).ProcessUnitCommand(unitCommand);
         }
 
         private void SetUnitReferences(IUnitCommand unitCommand)
         {
-            UnitController actorUnit = GetPlayerById(unitCommand.commnadData.ActorPlayerID).GetUnitByID(unitCommand.commnadData.ActorUnitID);
-            UnitController targetUnit = GetPlayerById(unitCommand.commnadData.TargetPlayerID).GetUnitByID(unitCommand.commnadData.TargetUnitID);
+            UnitController actorUnit = GetPlayerById(unitCommand.commandData.ActorPlayerID).GetUnitByID(unitCommand.commandData.ActorUnitID);
+            UnitController targetUnit = GetPlayerById(unitCommand.commandData.TargetPlayerID).GetUnitByID(unitCommand.commandData.TargetUnitID);
             unitCommand.SetActorUnit(actorUnit);
             unitCommand.SerTargetUnit(targetUnit);
         }

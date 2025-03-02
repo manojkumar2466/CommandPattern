@@ -6,7 +6,6 @@ using UnityEngine;
 public class ThirdEyeCommand : IUnitCommand
 {
     private bool willHitTarget;
-    private CommandData commandData;
 
     public ThirdEyeCommand(CommandData commandData)
     {
