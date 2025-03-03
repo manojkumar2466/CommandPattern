@@ -17,6 +17,20 @@ public class HealCommand : IUnitCommand
         return true;
     }
 
+    public override void Undo()
+    {
+        if (willHitTaget)
+        {
+            if (targetunit.IsAlive())
+            {
+                targetunit.TakeDamage(actorunit.CurrentPower);
+                actorunit.Owner.ResetCurrentActiveUnit();
+            }
+            
+        }
+        
+    }
+
     public override void Execute()
     {
         GameService.Instance.ActionService.GetActionByType(Command.Actions.CommandType.Heal).PerformAction(actorunit, targetunit, willHitTaget);

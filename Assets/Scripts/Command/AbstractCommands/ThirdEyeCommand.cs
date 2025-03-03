@@ -18,6 +18,22 @@ public class ThirdEyeCommand : IUnitCommand
         return true;
     }
 
+    public override void Undo()
+    {
+        if (willHitTarget)
+        {
+            if(!targetunit.IsAlive())
+            {
+                targetunit.Revive();
+            }
+            int healthToIncrease = (int)((targetunit.CurrentHealth / 75) * 0.25);
+            targetunit.RestoreHealth(healthToIncrease);
+            targetunit.CurrentPower -= healthToIncrease;
+            targetunit.Owner.ResetCurrentActiveUnit();
+        }
+
+    }
+
     public override void Execute()
     {
         GameService.Instance.ActionService.GetActionByType(Command.Actions.CommandType.ThirdEye).PerformAction(actorunit, targetunit, willHitTarget);
