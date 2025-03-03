@@ -11,7 +11,20 @@ public class AttackCommand : IUnitCommand
         willHitTarget = WillHitTarget();
     }
 
-   public override bool WillHitTarget()
+    public override void Undo()
+    {
+        if (willHitTarget)
+        {
+            if (!targetunit.IsAlive())
+            {
+                targetunit.Revive();
+            }
+            targetunit.RestoreHealth(actorunit.CurrentPower);
+            targetunit.Owner.ResetCurrentActiveUnit();
+        }
+        
+    }
+    public override bool WillHitTarget()
    {
         return true;
    }

@@ -18,6 +18,19 @@ public class AttackStanceCommand : IUnitCommand
         return true;
     }
 
+    public override void Undo()
+    {
+        if(willHitTarget)
+        {
+            if(!targetunit.IsAlive())
+            {
+                targetunit.Revive();
+            }
+            int originalPower = (targetunit.CurrentPower / 120) * 100;
+            targetunit.CurrentPower = originalPower;
+        }
+    }
+
     public override void Execute()
     {
         GameService.Instance.ActionService.GetActionByType(Command.Actions.CommandType.AttackStance).PerformAction(actorunit, targetunit, willHitTarget);
