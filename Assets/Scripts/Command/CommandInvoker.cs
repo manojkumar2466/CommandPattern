@@ -6,6 +6,18 @@ public class CommandInvoker : MonoBehaviour
 {
     private Stack<ICommand> commandRegistry = new Stack<ICommand>();
 
+    public CommandInvoker()
+    {
+       
+    }
+
+    
+
+    public void SetReplayStack()
+    {
+        GameService.Instance.replayService.SetCommandStack(commandRegistry);
+        commandRegistry.Clear();
+    }
     public void ExecuteCommand(ICommand command)=> command.Execute();
 
     public void Undo()

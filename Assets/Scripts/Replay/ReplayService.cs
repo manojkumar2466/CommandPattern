@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Command.Main
+using Command.Main;
 
 public enum ReplayState
 {
     Active,
-    Deactive
+    Inactive
 }
 public class ReplayService : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class ReplayService : MonoBehaviour
 
     public ReplayService()
     {
-        SetReplayState(ReplayState.Deactive);
+        SetReplayState(ReplayState.Inactive);
     }
 
     public void SetCommandStack(Stack<ICommand> commandsToSet)

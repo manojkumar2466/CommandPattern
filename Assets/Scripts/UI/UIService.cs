@@ -34,7 +34,16 @@ namespace Command.UI
             battleEndController = new BattleEndUIController(battleEndView);
         }
 
-        public void Init(int battleCount) => ShowBattleSelectionView(battleCount);
+        public void Init(int battleCount)
+        {
+            ShowBattleSelectionView(battleCount);
+            SubscribeToEvent();
+        }
+
+        private void SubscribeToEvent()
+        {
+            GameService.Instance.EventService.OnReplayButtonClicked.AddListener(HideBattleEndUI);
+        }
 
         private void ShowBattleSelectionView(int battleCount) => battleSelectionController.Show(battleCount);
 
@@ -52,6 +61,18 @@ namespace Command.UI
         {
             actionSelectionController.Show(executableActions);
             GameService.Instance.InputService.SetInputState(InputState.SELECTING_ACTION);
+            switch(GameService.Instance.replayService.replayState)
+            {
+                case ReplayState.Active:
+                    GameService.Instance.replayService.ExecuteNext();
+                    break;
+
+                case ReplayState.Inactive:
+                    actionSelectionController.Show(executableActions);
+                    GameService.Instance.InputService.SetInputState(InputState.SELECTING_ACTION);
+                    break;
+
+            }
         }
 
         public void ShowBattleEndUI(int winnerId)

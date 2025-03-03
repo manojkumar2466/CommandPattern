@@ -19,7 +19,7 @@ namespace Command.UI
         [SerializeField] private Image backgroundImage;
         [SerializeField] private Button undoButton;
 
-        public void SetController(GameplayUIController controllerToSet) 
+         public void SetController(GameplayUIController controllerToSet) 
         {
             controller = controllerToSet;
             missedText.canvasRenderer.SetAlpha(0);
