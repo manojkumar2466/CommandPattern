@@ -29,6 +29,7 @@ public class ThirdEyeCommand : IUnitCommand
             int healthToIncrease = (int)((targetunit.CurrentHealth / 75) * 0.25);
             targetunit.RestoreHealth(healthToIncrease);
             targetunit.CurrentPower -= healthToIncrease;
+            targetunit.Owner.ResetCurrentActiveUnit();
         }
 
     }

@@ -28,6 +28,7 @@ public class AttackStanceCommand : IUnitCommand
             }
             int originalPower = (targetunit.CurrentPower / 120) * 100;
             targetunit.CurrentPower = originalPower;
+            targetunit.Owner.ResetCurrentActiveUnit();
         }
     }
 

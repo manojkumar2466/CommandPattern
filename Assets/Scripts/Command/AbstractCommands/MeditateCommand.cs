@@ -26,6 +26,7 @@ public class MeditateCommand : IUnitCommand
                 int healthToDecrease = (targetunit.CurrentMaxHealth / 120) * 100;
                 targetunit.TakeDamage(healthToDecrease);
                 targetunit.CurrentMaxHealth -= healthToDecrease;
+                targetunit.Owner.ResetCurrentActiveUnit();
             }
         }
         

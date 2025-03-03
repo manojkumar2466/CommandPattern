@@ -23,6 +23,7 @@ public class CleanseCommand : IUnitCommand
         if(willHitTarget)
         {
             targetunit.CurrentPower = prevPower;
+            targetunit.Owner.ResetCurrentActiveUnit();
         }
     }
 
